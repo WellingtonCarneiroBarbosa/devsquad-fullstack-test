@@ -21,6 +21,10 @@ class DailyLog extends Model
         'day'
     ];
 
+    protected $casts = [
+        'day' => 'datetime'
+    ];
+
     /**
      * Create relationships between DailyLogs and User
      *
@@ -39,27 +43,6 @@ class DailyLog extends Model
      */
     public function scopeFromToday(\Illuminate\Database\Eloquent\Builder $query): \Illuminate\Database\Eloquent\Builder
     {
-        return $query->where('day', '=', Carbon::now()->format('Y-m-d'));
-    }
-
-    /**
-     * Mutate the Day attribute to a string format of Y-m-d
-     *
-     * @param mixed $value
-     * @return void
-     */
-    public function setDayAttribute($value): void
-    {
-        $this->attributes['day'] = Carbon::parse($value)->format('Y-m-d');
-    }
-
-    /**
-     * Mutate the Day attribute to a Carbon instance
-     *
-     * @return \Illuminate\Support\Carbon
-     */
-    public function getDayAttribute(): \Illuminate\Support\Carbon
-    {
-        return Carbon::createFromFormat('Y-m-d', $this->attributes['day']);
+        return $query->whereDate('day', '=', Carbon::today());
     }
 }

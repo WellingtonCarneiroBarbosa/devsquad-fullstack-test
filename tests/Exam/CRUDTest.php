@@ -33,6 +33,9 @@ class CRUDTest extends TestCase
      */
     public function create_route()
     {
+        /**
+         * @var \App\Models\User
+         */
         $user = \App\Models\User::factory()->create();
 
         $this->actingAs($user)

@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Models\User;
-use App\Observers\UserObserver;
+use App\Models\DailyLog;
+use App\Observers\User\UserObserver;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
+use App\Observers\User\DailyLogObserver;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -31,5 +33,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         User::observe(UserObserver::class);
+        DailyLog::observe(DailyLogObserver::class);
     }
 }

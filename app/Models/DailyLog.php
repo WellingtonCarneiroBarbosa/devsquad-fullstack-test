@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -22,15 +22,6 @@ class DailyLog extends Model
     ];
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'day' => 'date:Y-m-d',
-    ];
-
-     /**
      * Create relationships between DailyLogs and User
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -41,12 +32,34 @@ class DailyLog extends Model
     }
 
     /**
-     * Filter today's logs
+     * Scope a query to only include today's logs.
      *
-     * @return self
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function fromToday(): self
+    public function scopeFromToday(\Illuminate\Database\Eloquent\Builder $query): \Illuminate\Database\Eloquent\Builder
     {
-        return $this->where('day', '=', Carbon::today()->format('Y-m-d'));
+        return $query->where('day', '=', Carbon::now()->format('Y-m-d'));
+    }
+
+    /**
+     * Mutate the Day attribute to a string format of Y-m-d
+     *
+     * @param mixed $value
+     * @return void
+     */
+    public function setDayAttribute($value): void
+    {
+        $this->attributes['day'] = Carbon::parse($value)->format('Y-m-d');
+    }
+
+    /**
+     * Mutate the Day attribute to a Carbon instance
+     *
+     * @return \Illuminate\Support\Carbon
+     */
+    public function getDayAttribute(): \Illuminate\Support\Carbon
+    {
+        return Carbon::createFromFormat('Y-m-d', $this->attributes['day']);
     }
 }

@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Create relationships between User and DailyLogs
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function dailyLogs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany('App\Models\DailyLog');
+    }
 }

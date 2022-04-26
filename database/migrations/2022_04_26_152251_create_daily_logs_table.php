@@ -17,7 +17,7 @@ class CreateDailyLogsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->index();
             $table->text('log');
-            $table->timestamp('day');
+            $table->date('day');
             $table->timestamps();
 
             $table->foreign('user_id')

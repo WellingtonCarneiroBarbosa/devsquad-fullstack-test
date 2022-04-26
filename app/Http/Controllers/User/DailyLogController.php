@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\User\StoreDailyLogRequest;
-use App\Http\Requests\User\UpdateDailyLogRequest;
 use App\Models\DailyLog;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\User\StoreDailyLogRequest;
+use App\Http\Requests\User\UpdateDailyLogRequest;
 
 class DailyLogController extends Controller
 {
@@ -66,6 +67,12 @@ class DailyLogController extends Controller
      */
     public function destroy(DailyLog $dailyLog)
     {
-        //
+        $response = Gate::inspect('delete', $dailyLog);
+
+        if($response->allowed()) {
+            $dailyLog->delete();
+        } else {
+            return abort(403, $response->message());
+        }
     }
 }

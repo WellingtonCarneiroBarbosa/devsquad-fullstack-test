@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use App\Rules\DailyLogSentencesRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateDailyLogRequest extends FormRequest
@@ -24,7 +25,7 @@ class UpdateDailyLogRequest extends FormRequest
     public function rules()
     {
         return [
-            'log' => ['required']
+            'log' => ['required',  new DailyLogSentencesRule()]
         ];
     }
 }

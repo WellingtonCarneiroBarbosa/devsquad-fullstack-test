@@ -19,6 +19,7 @@ class CreateDailyLogsTable extends Migration
             $table->text('log');
             $table->timestamp('day');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')
                     ->references('id')

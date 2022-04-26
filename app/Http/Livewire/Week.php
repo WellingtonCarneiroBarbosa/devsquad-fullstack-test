@@ -36,6 +36,7 @@ class Week extends Component
     {
         $this->currentDate = $day;
 
+        // there was no time to validate the dates :/
         $this->validate([
             'currentDate' => ['date']
         ]);

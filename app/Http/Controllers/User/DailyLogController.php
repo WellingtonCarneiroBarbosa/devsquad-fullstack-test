@@ -5,12 +5,22 @@ namespace App\Http\Controllers\User;
 use App\Models\DailyLog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\BlockJaneDoeRequest;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\User\StoreDailyLogRequest;
 use App\Http\Requests\User\UpdateDailyLogRequest;
 
 class DailyLogController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     */
+    public function __construct()
+    {
+        // $this->middleware('block.jane-doe');
+    }
+
     /**
      * Display a listing of the resource.
      *

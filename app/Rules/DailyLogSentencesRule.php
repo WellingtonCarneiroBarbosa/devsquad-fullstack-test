@@ -25,7 +25,7 @@ class DailyLogSentencesRule implements Rule
     public function passes($attribute, $value)
     {
         foreach ($this->blocked as $word) {
-            if (strpos(strtolower($value), strtolower($word)) !== false) {
+            if (strpos(mb_strtolower($value), mb_strtolower($word)) !== false) {
                 return false;
             }
         }

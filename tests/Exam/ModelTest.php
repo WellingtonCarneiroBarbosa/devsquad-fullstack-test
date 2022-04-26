@@ -2,7 +2,6 @@
 
 namespace Tests\Exam;
 
-use App\Models\DailyLog;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Testing\RefreshDatabase;

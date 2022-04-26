@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\DailyLogCreated;
+use App\Listeners\DailyLogCreatedListener;
 use App\Models\User;
 use App\Models\DailyLog;
 use App\Observers\User\UserObserver;
@@ -23,6 +25,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        DailyLogCreated::class => [
+            DailyLogCreatedListener::class,
+        ]
     ];
 
     /**

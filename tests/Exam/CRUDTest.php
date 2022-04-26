@@ -2,10 +2,12 @@
 
 namespace Tests\Exam;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * CRUD Test
@@ -189,7 +191,9 @@ class CRUDTest extends TestCase
      */
     public function dispatch_an_event()
     {
-        Event::fake();
+        Event::fake([
+            \App\Events\DailyLogCreated::class
+        ]);
 
         $user = \App\Models\User::factory()->create();
 

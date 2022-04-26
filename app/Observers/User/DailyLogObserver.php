@@ -3,6 +3,7 @@
 namespace App\Observers\User;
 
 use App\Models\DailyLog;
+use App\Events\DailyLogCreated;
 
 class DailyLogObserver
 {
@@ -25,7 +26,7 @@ class DailyLogObserver
      */
     public function created(DailyLog $dailyLog)
     {
-        //
+        event(new DailyLogCreated($dailyLog));
     }
 
     /**

@@ -6,8 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateDailyLogRequest extends FormRequest
 {
-    use DailyLogBaseRules;
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,6 +23,8 @@ class UpdateDailyLogRequest extends FormRequest
      */
     public function rules()
     {
-        return $this->base_rules;
+        return [
+            'log' => ['required']
+        ];
     }
 }

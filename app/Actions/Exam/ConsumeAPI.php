@@ -9,7 +9,7 @@ class ConsumeAPI
     public static function execute()
     {
         $client = new Client([
-            'base_uri' => 'https://ios-api.devsquadstage.com',
+            'base_uri' => config('services.exam.endpoint'),
             'timeout'  => 10.0,
         ]);
 

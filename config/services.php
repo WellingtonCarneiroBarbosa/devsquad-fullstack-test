@@ -30,4 +30,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'exam' => [
+        'endpoint' => env('EXAM_ENDPOINT', 'https://ios-api.devsquadstage.com'),
+        'api_token' => env('EXAM_API_TOKEN'),
+        'api_secret' => env('EXAM_API_SECRET'),
+    ],
 ];
